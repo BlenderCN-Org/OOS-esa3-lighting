@@ -11,3 +11,7 @@ Vll wäre das eine gute Idee so ein Tool nachzubauen evt mit weniger Auswahl an 
 https://www.youtube.com/watch?v=qlz1z2xJhZE
 
 etwas chaotischer mensch aber sinnvolles video
+
+
+https://blenderartists.org/forum/showthread.php?389012-Best-way-for-developing-under-Blender-with-external-Editor-(PyCharm)
+ um blender mit pycharm zu verheiraten
