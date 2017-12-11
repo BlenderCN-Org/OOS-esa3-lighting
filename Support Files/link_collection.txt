@@ -15,3 +15,12 @@ etwas chaotischer mensch aber sinnvolles video
 
 https://blenderartists.org/forum/showthread.php?389012-Best-way-for-developing-under-Blender-with-external-Editor-(PyCharm)
  um blender mit pycharm zu verheiraten
+
+
+
+https://blender.stackexchange.com/questions/57306/how-to-create-a-custom-ui
+gute hilfe beim erstellen neuer ui elemente in blender
+
+
+https://www.youtube.com/watch?v=lwfiPftRZbM
+video zum erstellen einfacher ui elemente
