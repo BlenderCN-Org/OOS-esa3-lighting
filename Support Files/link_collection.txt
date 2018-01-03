@@ -30,3 +30,7 @@ https://www.youtube.com/watch?v=qdqEYfSb6t8
 banal, aber nicht auf den ersten Blick zu finden:
 orbiting 
 how to use blender with a 2 button mouse
+
+
+https://leomoon.com/downloads/plugins/blender-light-studio/
+Anwendung des Tools Blender Light Studio, free download, gutes Beispiel für Menü 
