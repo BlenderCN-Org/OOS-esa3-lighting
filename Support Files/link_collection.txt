@@ -15,7 +15,8 @@ etwas chaotischer mensch aber sinnvolles video
 
 https://blenderartists.org/forum/showthread.php?389012-Best-way-for-developing-under-Blender-with-external-Editor-(PyCharm)
  um blender mit pycharm zu verheiraten
-
+genauso:
+https://b3d.interplanety.org/en/using-external-ide-pycharm-for-writing-blender-scripts/
 
 
 https://blender.stackexchange.com/questions/57306/how-to-create-a-custom-ui
