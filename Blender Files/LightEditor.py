@@ -19,7 +19,7 @@ class LampAdjustPanel(ViewLightningPanel, Panel):
         layout = self.layout
         col = layout.column(align = True)
         layout.operator("object.lamp_selection_operator", text = "Select All Lamps")
-        layout.operator("object.switchoffalllamps_operator", text = "Switch Off All Lamps")
+        layout.operator("object.switchoffalllamps_operator", text = "Turn Lamps On / Off")
         layout.operator("brightness.operator", text = "Change Luminosity")
         layout.operator("colour.operator", text = "Change Colour")
         
@@ -77,9 +77,20 @@ class SelectAllLampsOperator(bpy.types.Operator):
 class SwitchOffAllLampsOperator(bpy.types.Operator):
     bl_idname = "object.switchoffalllamps_operator"
     bl_label = "Simple Lamp Switch Off Operator"
+    oldLampStrength = 0
     
     def execute(self, context):
-        SetLampStrength(context, 0)
+        currentLampStrength = int(GetLampStrength(context.object))
+                
+        if currentLampStrength != 0:
+            print("not dark!")
+            SwitchOffAllLampsOperator.oldLampStrength = currentLampStrength
+            SetLampStrength(context, 0)
+        
+        elif currentLampStrength == 0:
+            print("dark!")
+            SetLampStrength(context, SwitchOffAllLampsOperator.oldLampStrength)
+                                
         return {'FINISHED'}
     
     
