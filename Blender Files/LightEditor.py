@@ -19,7 +19,7 @@ class LampAdjustPanel(ViewLightningPanel, Panel):
         layout = self.layout
         col = layout.column(align = True)
         layout.operator("object.lamp_selection_operator", text = "Select All Lamps")
-        layout.operator("object.switchoffalllamps_operator", text = "Turn Lamps On / Off")
+        layout.operator("object.switchoffalllamps_operator", text = "Switch Lamps On / Off")
         layout.operator("brightness.operator", text = "Change Luminosity")
         layout.operator("colour.operator", text = "Change Colour")
         
