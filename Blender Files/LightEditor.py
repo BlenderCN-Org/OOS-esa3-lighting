@@ -8,6 +8,21 @@ class ViewLightningPanel():
     bl_region_type = 'TOOLS'
     
 # the new panel
+class SetupSelectionPanel(ViewLightningPanel, Panel):
+    bl_idname = "panel_setup_selection"
+    bl_label = "Select your Setup"
+    bl_context = "objectmode"
+    bl_category = "LMD"
+
+    # draw a new button, call operator on click
+    def draw(self, context):
+        layout = self.layout
+        col = layout.column(align=True)
+        layout.operator("object.portrait_setup_operator", text="Portrait Setup")
+
+#walk the dog...
+
+
 class LampAdjustPanel(ViewLightningPanel, Panel):
     bl_idname = "panel_lampadjust"
     bl_label = "Lamp Adjustment"
@@ -65,10 +80,10 @@ class BrightnessOperator(bpy.types.Operator):
         col.prop(self,"brightnessValue")
 
 # operator for button
-class SelectAllLampsOperator(bpy.types.Operator):
+class SelectPortraitSetup(bpy.types.Operator):
     """Tooltip"""
-    bl_idname = "object.lamp_selection_operator"
-    bl_label = "Simple Lamp Selection Operator"
+    bl_idname = "object.portrait_setup_operator"
+    bl_label = "Portrait Setup Selection Operator"
 
     def execute(self, context):
         SelectAllLamps(context)
