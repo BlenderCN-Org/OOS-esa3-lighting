@@ -19,9 +19,8 @@ class SetupSelectionPanel(ViewLightningPanel, Panel):
         layout = self.layout
         col = layout.column(align=True)
         layout.operator("object.portrait_setup_operator", text="Portrait Setup")
-
-#walk the dog...
-
+        layout.operator("object.packshot_setup_operator", text="Packshot Setup")
+        layout.operator("object.grid_setup_operator", text="Grid Setup")
 
 class LampAdjustPanel(ViewLightningPanel, Panel):
     bl_idname = "panel_lampadjust"
@@ -79,11 +78,29 @@ class BrightnessOperator(bpy.types.Operator):
         col = layout.column()
         col.prop(self,"brightnessValue")
 
-# operator for button
+# operator for buttons
 class SelectPortraitSetup(bpy.types.Operator):
     """Tooltip"""
     bl_idname = "object.portrait_setup_operator"
     bl_label = "Portrait Setup Selection Operator"
+
+    def execute(self, context):
+        SelectAllLamps(context)
+        return {'FINISHED'}
+
+class SelectPortraitSetup(bpy.types.Operator):
+    """Tooltip"""
+    bl_idname = "object.packshot_setup_operator"
+    bl_label = "Packshot Setup Selection Operator"
+
+    def execute(self, context):
+        SelectAllLamps(context)
+        return {'FINISHED'}
+
+class SelectPortraitSetup(bpy.types.Operator):
+    """Tooltip"""
+    bl_idname = "object.grid_setup_operator"
+    bl_label = "Grid Setup Selection Operator"
 
     def execute(self, context):
         SelectAllLamps(context)
@@ -108,8 +125,6 @@ class SwitchOffAllLampsOperator(bpy.types.Operator):
                                 
         return {'FINISHED'}
     
-    
-    
 def SetColour(red, green, blue):
     print(red, green, blue)
     sce = bpy.context.scene
@@ -127,7 +142,6 @@ def SetLampStrength(context, lampStrength):
 
 def GetLampStrength(lamp):
     return bpy.data.lamps[lamp.name].node_tree.nodes["Emission"].inputs[1].default_value
-
     
 # function for operator
 def SelectAllLamps(context):
@@ -137,8 +151,6 @@ def SelectAllLamps(context):
             object.select = False 
         else:
             object.select = True
-        
-        
         
 def register():
     #bpy.utils.register_class(LampAdjustPanel)
