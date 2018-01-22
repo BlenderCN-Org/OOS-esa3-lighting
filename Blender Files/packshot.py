@@ -1,3 +1,4 @@
+.828055, 0.649111)
 import bpy
 #make a plane for setting up a table top
 bpy.ops.mesh.primitive_plane_add(view_align=False, enter_editmode=False, location=(0, 0, 0), layers=(True, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False))
@@ -24,4 +25,4 @@ bpy.context.object.data.color = (1, 0.828055, 0.649111)
 bpy.ops.object.lamp_add(type='SPOT', view_align=False, location=(5, 3, 5), layers=(True, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False))
 bpy.context.object.data.distance = 15
 bpy.context.object.data.energy = 0.15
-bpy.context.object.data.color = (1, 0.828055, 0.649111)
+bpy.context.object.data.color = (1, 0)
