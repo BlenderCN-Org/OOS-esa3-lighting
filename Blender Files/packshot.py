@@ -1,4 +1,4 @@
-.828055, 0.649111)
+
 import bpy
 #make a plane for setting up a table top
 bpy.ops.mesh.primitive_plane_add(view_align=False, enter_editmode=False, location=(0, 0, 0), layers=(True, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False))
