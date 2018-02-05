@@ -23,6 +23,7 @@ class SetupSelectionPanel(ViewLightningPanel, Panel):
         layout.operator("object.portrait_setup_operator", text="Portrait Setup")
         layout.operator("object.packshot_setup_operator", text="Packshot Setup")
         layout.operator("object.grid_setup_operator", text="Grid Setup")
+        layout.operator("object.remove_fixture_operator", text="Remove Fixture")
 
 
 class LampAdjustPanel(ViewLightningPanel, Panel):
@@ -39,7 +40,6 @@ class LampAdjustPanel(ViewLightningPanel, Panel):
         layout.operator("object.switchoffalllamps_operator", text="Switch Lamps On / Off")
         layout.operator("brightness.operator", text="Change Luminosity")
         layout.operator("colour.operator", text="Change Colour")
-
 
 class ColourOperator(bpy.types.Operator):
     bl_idname = "colour.operator"
@@ -68,8 +68,7 @@ class BrightnessOperator(bpy.types.Operator):
     bl_idname = "brightness.operator"
     bl_label = "Set Luminosity"
     defaultValue = 0
-    brightnessValue = bpy.props.IntProperty(name="Luminosity", description="the actual brightness", min=10,
-                                            default=defaultValue)  # default remains 0 ? why?
+    brightnessValue = bpy.props.IntProperty(name="Luminosity", description="the actual brightness", min=10, default=defaultValue)  # default remains 0 ? why?
 
     def execute(self, context):
         self.report({'INFO'}, str(self.brightnessValue))
@@ -89,41 +88,38 @@ class BrightnessOperator(bpy.types.Operator):
         col.prop(self, "brightnessValue")
 
 
-# operator for buttons
 class SelectPortraitSetup(bpy.types.Operator):
     """Tooltip"""
     bl_idname = "object.portrait_setup_operator"
     bl_label = "Portrait Setup Selection Operator"
 
     def execute(self, context):
-        # bpy.ops.mesh.primitive_monkey_add(radius=1, view_align=False, enter_editmode=False, location=(0, 0, 0), layers=(True, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False))
+        #add a standin
+        suzanne = bpy.ops.mesh.primitive_monkey_add(radius=1, view_align=False, enter_editmode=False, location=(0, 0, 0), layers=(True, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False))
 
-        # Führung hinzufügen
-        bpy.ops.object.lamp_add(type='AREA', radius=1, view_align=False, location=(-2.75, -2.00, 2.3), layers=(True, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False,False, False, False, False))
-        # distance
-        bpy.context.object.data.distance = 15
-        # energy
-        bpy.context.object.data.energy = 0.2
-        # color
-        bpy.context.object.data.color = (1, 0.828055, 0.649111)
+        # add a standin
+        portrait_keylight = bpy.ops.object.lamp_add(type='AREA', radius=1, view_align=False, location=(-2.75, -2.00, 2.3), layers=(True, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False,False, False, False, False))
+        for obj in bpy.context.selected_objects:
+            obj.name = "portrait_keylight"
+        portrait_keylight_distance= bpy.context.object.data.distance = 15
+        portrait_keylight_energy= bpy.context.object.data.energy = 0.2
+        portrait_keylight_color= bpy.context.object.data.color = (1, 0.828055, 0.649111)
 
-        # Aufhellung hinzufügen
-        bpy.ops.object.lamp_add(type='AREA', view_align=False, location=(3.11, -2.02, 1.35), layers=(True, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False,False, False, False, False))
-        # distance
-        bpy.context.object.data.distance = 15
-        # energy
-        bpy.context.object.data.energy = 0.1
-        # color
-        bpy.context.object.data.color = (1, 0.828055, 0.649111)
+        # add a fill
+        portrait_fill= bpy.ops.object.lamp_add(type='AREA', view_align=False, location=(3.11, -2.02, 1.35), layers=(True, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False,False, False, False, False))
+        for obj in bpy.context.selected_objects:
+            obj.name = "portrait_fill"
+        portrait_fill_distance= bpy.context.object.data.distance = 15
+        portrait_fill_energy= bpy.context.object.data.energy = 0.1
+        portrait_fill_color= bpy.context.object.data.color = (1, 0.828055, 0.649111)
 
-        # Spitze hinzufügen
-        bpy.ops.object.lamp_add(type='SPOT', view_align=False, location=(-3.85, 2.44, 2.26), layers=(True, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False,False, False, False, False))
-        # distance
-        bpy.context.object.data.distance = 15
-        # energy
-        bpy.context.object.data.energy = 0.1
-        # color
-        bpy.context.object.data.color = (1, 0.828055, 0.649111)
+        # backlight
+        portrait_backlight = bpy.ops.object.lamp_add(type='SPOT', view_align=False, location=(-3.85, 2.44, 2.26), layers=(True, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False,False, False, False, False))
+        for obj in bpy.context.selected_objects:
+            obj.name = "portrait_backlight"
+        portrait_backlight_distance= bpy.context.object.data.distance = 15
+        portrait_backlight_energy= bpy.context.object.data.energy = 0.1
+        portrait_backlight_color= bpy.context.object.data.color = (1, 0.828055, 0.649111)
         return {'FINISHED'}
 
 class SelectGritSetup(bpy.types.Operator):
@@ -132,6 +128,10 @@ class SelectGritSetup(bpy.types.Operator):
     bl_label = "Grid Setup Selection Operator"
 
     def execute(self, context):
+        # make a plane for setting up a table top
+        grid_plane= bpy.ops.mesh.primitive_plane_add(view_align=False, enter_editmode=False, location=(0, 0, 0), layers=(True, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False))
+        grid_plane_transform= bpy.ops.transform.resize(value=(-5.0, -5.0, -5.0), constraint_axis=(False, False, False), constraint_orientation='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+
         for i in range(10):
             for j in range(10):
                 bpy.ops.object.lamp_add(type='AREA', radius=1, view_align=False, location=(i * 2, j * 2, 0.0), layers=(True, False, False, False, False, False, False, False, False, False, False, False, False, False, False,False, False, False, False, False))
@@ -148,31 +148,47 @@ class SelectPackshotSetup(bpy.types.Operator):
 
     def execute(self, context):
         # make a plane for setting up a table top
-        bpy.ops.mesh.primitive_plane_add(view_align=False, enter_editmode=False, location=(0, 0, 0), layers=(True, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False,False, False, False, False))
-        bpy.ops.transform.resize(value=(-5.0, -5.0, -5.0), constraint_axis=(False, False, False), constraint_orientation='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+        packhot_plane= bpy.ops.mesh.primitive_plane_add(view_align=False, enter_editmode=False, location=(0, 0, 0), layers=(True, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False,False, False, False, False))
+        packshot_plane_transform= bpy.ops.transform.resize(value=(-5.0, -5.0, -5.0), constraint_axis=(False, False, False), constraint_orientation='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
         # make the sides
-        bpy.ops.object.lamp_add(type='AREA', radius=1, view_align=False, location=(0, -10, 2.3), layers=(True, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False,False, False, False, False))
+        packshot_leftside= bpy.ops.object.lamp_add(type='AREA', radius=1, view_align=False, location=(0, -10, 2.3), layers=(True, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False,False, False, False, False))
+        for obj in bpy.context.selected_objects:
+            obj.name = "packshot_leftside"
         bpy.context.object.data.distance = 15
         bpy.context.object.data.energy = 0.2
         bpy.context.object.data.color = (1, 0.828055, 0.649111)
-        bpy.ops.object.lamp_add(type='AREA', radius=1, view_align=False, location=(0, 10, 2.3), layers=(True, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False,False, False, False, False))
+        packshot_rideside= bpy.ops.object.lamp_add(type='AREA', radius=1, view_align=False, location=(0, 10, 2.3), layers=(True, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False,False, False, False, False))
+        for obj in bpy.context.selected_objects:
+            obj.name = "packshot_rideside"
         bpy.context.object.data.distance = 15
         bpy.context.object.data.energy = 0.2
         bpy.context.object.data.color = (1, 0.828055, 0.649111)
 
         # make the backlight
-        bpy.ops.object.lamp_add(type='AREA', radius=1, view_align=False, location=(-6, 0, 8), layers=(True, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False,False, False, False, False))
-        bpy.context.object.data.distance = 15
-        bpy.context.object.data.energy = 0.15
-        bpy.context.object.data.color = (1, 0.828055, 0.649111)
+        packshot_backlight= bpy.ops.object.lamp_add(type='AREA', radius=1, view_align=False, location=(-6, 0, 8), layers=(True, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False,False, False, False, False))
+        for obj in bpy.context.selected_objects:
+            obj.name = "packshot_backlight"
+        packshot_backlight_distance= bpy.context.object.data.distance = 15
+        packshot_backlight_energy= bpy.context.object.data.energy = 0.15
+        packshot_backlight_color= bpy.context.object.data.color = (1, 0.828055, 0.649111)
 
         # make some accents
-        bpy.ops.object.lamp_add(type='SPOT', view_align=False, location=(5, 3, 5), layers=(True, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False,False, False, False, False))
-        bpy.context.object.data.distance = 15
-        bpy.context.object.data.energy = 0.15
-        bpy.context.object.data.color = (1, 0.828055, 0.649111)
+        packshot_accent=bpy.ops.object.lamp_add(type='SPOT', view_align=False, location=(5, 3, 5), layers=(True, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False,False, False, False, False))
+        for obj in bpy.context.selected_objects:
+            obj.name = "packshot_accent"
+        packshot_accent_distance= bpy.context.object.data.distance = 15
+        packshot_accent_energy= bpy.context.object.data.energy = 0.15
+        packshot_accent_color= bpy.context.object.data.color = (1, 0.828055, 0.649111)
         return {'FINISHED'}
 
+#remove selected fixture
+class RemoveFixtureOperator(bpy.types.Operator):
+    bl_idname = "object.remove_fixture_operator"
+    bl_label = "Remove Fixture Operator"
+
+    def execute(self, context):
+        remove_fixture= bpy.ops.object.delete(use_global=False)
+        return {'FINISHED'}
 
 class SwitchOffAllLampsOperator(bpy.types.Operator):
     bl_idname = "object.switchoffalllamps_operator"
