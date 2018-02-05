@@ -229,6 +229,15 @@ def SetLampStrength(context, lampStrength):
 def GetLampStrength(lamp):
     return bpy.data.lamps[lamp.name].node_tree.nodes["Emission"].inputs[1].default_value
 
+# operator for button
+class SelectAllLampsOperator(bpy.types.Operator):
+    """Tooltip"""
+    bl_idname = "object.lamp_selection_operator"
+    bl_label = "Simple Lamp Selection Operator"
+
+    def execute(self, context):
+        SelectAllLamps(context)
+        return {'FINISHED'}
 
 # function for operator
 def SelectAllLamps(context):
@@ -238,6 +247,7 @@ def SelectAllLamps(context):
             object.select = False
         else:
             object.select = True
+
 
 
 def register():
