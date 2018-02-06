@@ -42,6 +42,7 @@ class LampAdjustPanel(ViewLightningPanel, Panel):
         layout.operator("colour.operator", text="Change Colour")
 
 class ColourOperator(bpy.types.Operator):
+    """Color picking by RGB values"""
     bl_idname = "colour.operator"
     bl_label = "Set Colour in Red, Green, Blue"
     redValue = bpy.props.IntProperty(name="Red", description="Red Proportion", max=255, min=0)
@@ -65,6 +66,7 @@ class ColourOperator(bpy.types.Operator):
 
 
 class BrightnessOperator(bpy.types.Operator):
+    """Setting the intensity from 0 to 100"""
     bl_idname = "brightness.operator"
     bl_label = "Set Luminosity"
     defaultValue = 0
@@ -89,7 +91,7 @@ class BrightnessOperator(bpy.types.Operator):
 
 
 class SelectPortraitSetup(bpy.types.Operator):
-    """Tooltip"""
+    """Classic 3-point-lighting portrait setup"""
     bl_idname = "object.portrait_setup_operator"
     bl_label = "Portrait Setup Selection Operator"
 
@@ -119,7 +121,7 @@ class SelectPortraitSetup(bpy.types.Operator):
         return {'FINISHED'}
 
 class SelectGritSetup(bpy.types.Operator):
-    """Tooltip"""
+    """10 by 10 fixture grid"""
     bl_idname = "object.grid_setup_operator"
     bl_label = "Grid Setup Selection Operator"
 
@@ -131,7 +133,7 @@ class SelectGritSetup(bpy.types.Operator):
 
         for i in range(10):
             for j in range(10):
-                bpy.ops.object.lamp_add(type='AREA', radius=1, view_align=False, location=(i * 2, j * 2, 10.0), layers=(True, False, False, False, False, False, False, False, False, False, False, False, False, False, False,False, False, False, False, False))
+                bpy.ops.object.lamp_add(type='AREA', radius=1, view_align=False, location=(i * 2, -j * 2, 10.0), layers=(True, False, False, False, False, False, False, False, False, False, False, False, False, False, False,False, False, False, False, False))
                 bpy.context.object.data.distance = 15
                 bpy.context.object.data.energy = 0.2
                 bpy.context.object.data.color = (1, 0.828055, 0.649111)
@@ -139,7 +141,7 @@ class SelectGritSetup(bpy.types.Operator):
 
 
 class SelectPackshotSetup(bpy.types.Operator):
-    """Tooltip"""
+    """Classic table top packshot setup"""
     bl_idname = "object.packshot_setup_operator"
     bl_label = "Packshot Setup Selection Operator"
 
@@ -172,6 +174,7 @@ class SelectPackshotSetup(bpy.types.Operator):
 
 #remove selected fixture
 class RemoveFixtureOperator(bpy.types.Operator):
+    """Removes the selected fixtures"""
     bl_idname = "object.remove_fixture_operator"
     bl_label = "Remove Fixture Operator"
 
@@ -180,6 +183,7 @@ class RemoveFixtureOperator(bpy.types.Operator):
         return {'FINISHED'}
 
 class SwitchOffAllLampsOperator(bpy.types.Operator):
+    """Switches off all fixtures"""
     bl_idname = "object.switchoffalllamps_operator"
     bl_label = "Simple Lamp Switch Off Operator"
     oldLampStrength = 0
@@ -220,7 +224,7 @@ def GetLampStrength(lamp):
 
 # operator for button
 class SelectAllLampsOperator(bpy.types.Operator):
-    """Tooltip"""
+    """Selects all fixtures"""
     bl_idname = "object.lamp_selection_operator"
     bl_label = "Simple Lamp Selection Operator"
 
@@ -261,4 +265,4 @@ if __name__ == "__main__":
     register()
 
     # seems to be needed (?)
-    # bpy.ops.object.simple_operator()
+# bpy.ops.object.simple_operator()
