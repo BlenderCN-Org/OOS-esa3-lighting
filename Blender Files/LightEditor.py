@@ -35,7 +35,7 @@ class LampAdjustPanel(ViewLightningPanel, Panel):
         col = layout.column(align=True)
         layout.operator("object.lamp_selection_operator", text="Select All Lamps")
         layout.operator("object.switchoffalllamps_operator", text="Switch Lamps On / Off")
-        layout.operator("object.remove_fixture_operator", text="Remove Fixture")
+        #layout.operator("object.remove_fixture_operator", text="Remove Fixture")
         layout.operator("brightness.operator", text="Change Luminosity")
         layout.operator("colour.operator", text="Change Colour")
 
@@ -97,7 +97,7 @@ class SelectPortraitSetup(bpy.types.Operator):
 
     def execute(self, context):
         #add a standin
-        #bpy.ops.mesh.primitive_monkey_add(radius=1, view_align=False, enter_editmode=False, location=(0, 0, 0), layers=(True, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False))
+        bpy.ops.mesh.primitive_monkey_add(radius=1, view_align=False, enter_editmode=False, location=(0, 0, 0), layers=(True, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False))
 
         # add a standin
         bpy.ops.object.lamp_add(type='AREA', radius=1, view_align=False, location=(-2.75, -2.00, 2.3), layers=(True, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False,False, False, False, False))
@@ -171,14 +171,14 @@ class SelectPackshotSetup(bpy.types.Operator):
         return {'FINISHED'}
 
 #remove selected fixture
-class RemoveFixtureOperator(bpy.types.Operator):
-    """Removes the selected fixtures"""
-    bl_idname = "object.remove_fixture_operator"
-    bl_label = "Remove Fixture Operator"
-
-    def execute(self, context):
-        remove_fixture= bpy.ops.object.delete(use_global=False)
-        return {'FINISHED'}
+# class RemoveFixtureOperator(bpy.types.Operator):
+#     """Removes the selected fixtures"""
+#     bl_idname = "object.remove_fixture_operator"
+#     bl_label = "Remove Fixture Operator"
+#
+#     def execute(self, context):
+#         remove_fixture= bpy.ops.object.delete(use_global=False)
+#         return {'FINISHED'}
 
 class SwitchOffAllLampsOperator(bpy.types.Operator):
     """Switches off all fixtures"""
@@ -217,7 +217,6 @@ def SetColour(red, green, blue):
 
 def SetLampStrength(object, lampStrength):
     helligkeit = lampStrength
-   
     object.data.energy = helligkeit
     return {'FINISHED'}
 
