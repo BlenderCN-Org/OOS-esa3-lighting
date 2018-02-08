@@ -23,8 +23,6 @@ class SetupSelectionPanel(ViewLightningPanel, Panel):
         layout.operator("object.portrait_setup_operator", text="Portrait Setup")
         layout.operator("object.packshot_setup_operator", text="Packshot Setup")
         layout.operator("object.grid_setup_operator", text="Grid Setup")
-        layout.operator("object.remove_fixture_operator", text="Remove Fixture")
-
 
 class LampAdjustPanel(ViewLightningPanel, Panel):
     bl_idname = "panel_lampadjust"
