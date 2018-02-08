@@ -23,7 +23,6 @@ class SetupSelectionPanel(ViewLightningPanel, Panel):
         layout.operator("object.portrait_setup_operator", text="Portrait Setup")
         layout.operator("object.packshot_setup_operator", text="Packshot Setup")
         layout.operator("object.grid_setup_operator", text="Grid Setup")
-        layout.operator("object.remove_fixture_operator", text="Remove Fixture")
 
 
 class LampAdjustPanel(ViewLightningPanel, Panel):
@@ -38,6 +37,7 @@ class LampAdjustPanel(ViewLightningPanel, Panel):
         col = layout.column(align=True)
         layout.operator("object.lamp_selection_operator", text="Select All Lamps")
         layout.operator("object.switchoffalllamps_operator", text="Switch Lamps On / Off")
+        layout.operator("object.remove_fixture_operator", text="Remove Fixture")
         layout.operator("brightness.operator", text="Change Luminosity")
         layout.operator("colour.operator", text="Change Colour")
 
@@ -97,7 +97,7 @@ class SelectPortraitSetup(bpy.types.Operator):
 
     def execute(self, context):
         #add a standin
-        bpy.ops.mesh.primitive_monkey_add(radius=1, view_align=False, enter_editmode=False, location=(0, 0, 0), layers=(True, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False))
+        #bpy.ops.mesh.primitive_monkey_add(radius=1, view_align=False, enter_editmode=False, location=(0, 0, 0), layers=(True, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False))
 
         # add a standin
         bpy.ops.object.lamp_add(type='AREA', radius=1, view_align=False, location=(-2.75, -2.00, 2.3), layers=(True, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False,False, False, False, False))
