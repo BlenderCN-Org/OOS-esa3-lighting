@@ -186,20 +186,25 @@ class SwitchOffAllLampsOperator(bpy.types.Operator):
     """Switches off all fixtures"""
     bl_idname = "object.switchoffalllamps_operator"
     bl_label = "Simple Lamp Switch Off Operator"
-    oldLampStrength = 0
-
+    
     def execute(self, context):
-        currentLampStrength = int(GetLampStrength(context.object))
+        sce = bpy.context.scene
+        for object in sce.objects:
+            oldLampStrength = 0
+            if object.type == "LAMP":
+                currentLampStrength = float(GetLampStrength(context.object))
+                print ("Current lamps energy is set to:")
+                print (str(currentLampStrength))
 
-        if currentLampStrength != 0:
-            print("not dark!")
-            SwitchOffAllLampsOperator.oldLampStrength = currentLampStrength
-            SetLampStrength(context, 0)
+                if currentLampStrength != 0:
+                    print("not dark!")
+                    oldLampStrength = currentLampStrength
+                    SetLampStrength(object, 0)
 
-        elif currentLampStrength == 0:
-            print("dark!")
-            SetLampStrength(context, SwitchOffAllLampsOperator.oldLampStrength)
-
+                elif currentLampStrength == 0:
+                    print("dark!")
+                    SetLampStrength(object, oldLampStrength)
+        print ("++++++++++++++++++++++++++++++++++++")
         return {'FINISHED'}
 
 
@@ -211,16 +216,14 @@ def SetColour(red, green, blue):
             bpy.data.lamps[object.name].node_tree.nodes["Emission"].inputs[0].default_value = (red, green, blue, 1)
 
 
-def SetLampStrength(context, lampStrength):
+def SetLampStrength(object, lampStrength):
     helligkeit = lampStrength
-    sce = bpy.context.scene
-    for object in sce.objects:
-        if object.type == "LAMP":
-            bpy.data.lamps[object.name].node_tree.nodes["Emission"].inputs[1].default_value = helligkeit
+    
+    object.data.energy = helligkeit
 
 
 def GetLampStrength(lamp):
-    return bpy.data.lamps[lamp.name].node_tree.nodes["Emission"].inputs[1].default_value
+    return lamp.data.energy
 
 # operator for button
 class SelectAllLampsOperator(bpy.types.Operator):
