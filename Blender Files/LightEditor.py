@@ -242,20 +242,10 @@ def SelectAllLamps(context):
 
 
 def register():
-    # bpy.utils.register_class(LampAdjustPanel)
-    # bpy.utils.register_class(SelectAllLampsOperator)
-    # bpy.utils.register_class(SwitchOffAllLampsOperator)
-    # bpy.utils.register_class(BrightnessOperator)
-    # bpy.utils.register_class(ColourOperator)
     bpy.utils.register_module(__name__)
 
 
 def unregister():
-    # bpy.utils.unregister_class(LampAdjustPanel)
-    # bpy.utils.unregister_class(SelectAllLampsOperator)
-    # bpy.utils.unregister_class(SwitchOffAllLampsOperator)
-    # bpy.utils.unregister_class(BrightnessOperator)
-    # bpy.utils.unregister_class(ColourOperator)
     bpy.utils.unregister_module(__name__)
 
 
