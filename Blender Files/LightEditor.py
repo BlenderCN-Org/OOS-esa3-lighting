@@ -171,14 +171,14 @@ class SelectPackshotSetup(bpy.types.Operator):
         return {'FINISHED'}
 
 #remove selected fixture
-class RemoveFixtureOperator(bpy.types.Operator):
-    """Removes the selected fixtures"""
-    bl_idname = "object.remove_fixture_operator"
-    bl_label = "Remove Fixture Operator"
-
-    def execute(self, context):
-        remove_fixture= bpy.ops.object.delete(use_global=False)
-        return {'FINISHED'}
+# class RemoveFixtureOperator(bpy.types.Operator):
+#     """Removes the selected fixtures"""
+#     bl_idname = "object.remove_fixture_operator"
+#     bl_label = "Remove Fixture Operator"
+#
+#     def execute(self, context):
+#         remove_fixture= bpy.ops.object.delete(use_global=False)
+#         return {'FINISHED'}
 
 class SwitchOffAllLampsOperator(bpy.types.Operator):
     """Switches off all fixtures"""

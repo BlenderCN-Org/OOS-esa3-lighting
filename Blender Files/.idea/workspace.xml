@@ -14,8 +14,8 @@
       <file leaf-file-name="LightEditor.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/LightEditor.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="212" column="29" lean-forward="true" selection-start-line="212" selection-start-column="29" selection-end-line="212" selection-end-column="29" />
+            <state relative-caret-position="-255">
+              <caret line="180" column="29" lean-forward="true" selection-start-line="180" selection-start-column="29" selection-end-line="180" selection-end-column="29" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -660,8 +660,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/LightEditor.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="212" column="29" lean-forward="true" selection-start-line="212" selection-start-column="29" selection-end-line="212" selection-end-column="29" />
+        <state relative-caret-position="-255">
+          <caret line="180" column="29" lean-forward="true" selection-start-line="180" selection-start-column="29" selection-end-line="180" selection-end-column="29" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
