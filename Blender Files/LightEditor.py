@@ -67,7 +67,7 @@ class BrightnessOperator(bpy.types.Operator):
     bl_idname = "brightness.operator"
     bl_label = "Set Luminosity"
     defaultValue = 0
-    brightnessValue = bpy.props.FloatProperty(name="Luminosity", description="the actual brightness", min=0.001, max=10.000, default=defaultValue)  # default remains 0 ? why?
+    brightnessValue = bpy.props.FloatProperty(name="Luminosity", description="the actual brightness", min=0.001, max=10.000, default=defaultValue) 
 
     def execute(self, context):
         self.report({'INFO'}, str(self.brightnessValue))
