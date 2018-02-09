@@ -14,8 +14,8 @@
       <file leaf-file-name="LightEditor.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/LightEditor.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" column="39" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="252" selection-end-column="14" />
+            <state relative-caret-position="17">
+              <caret line="20" column="39" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="252" selection-end-column="14" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -116,7 +116,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1040" y="19" width="923" height="1000" extended-state="0" />
+    <frame x="948" y="19" width="923" height="1000" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.035281148" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -660,8 +660,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/LightEditor.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="39" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="252" selection-end-column="14" />
+        <state relative-caret-position="17">
+          <caret line="20" column="39" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="252" selection-end-column="14" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
